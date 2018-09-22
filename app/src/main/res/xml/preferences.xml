@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="@string/and_filter_default_value"
+        android:inputType="none|text"
+        android:key="@string/edit_and_preference_key"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="AND" />
+
+    <EditTextPreference
+        android:defaultValue="@string/or_filter_default_value"
+        android:inputType="none|text"
+        android:key="@string/edit_or_preference_key"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="OR" />
+
+    <EditTextPreference
+        android:defaultValue="@string/not_filter_default_value"
+        android:inputType="none|text"
+        android:key="@string/edit_not_preference_key"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="NOT" />
+
+</PreferenceScreen>

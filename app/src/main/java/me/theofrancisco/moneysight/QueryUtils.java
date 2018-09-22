@@ -44,20 +44,30 @@ public class QueryUtils {
 
             JSONArray results = response.getJSONArray("results");
             for (int i = 0; i < results.length(); i++) {
-                JSONObject feature = results.getJSONObject(i);
-                String sectionId = feature.getString("sectionId");
-                String sectionName = feature.getString("sectionName");
-                String webPublicationDate = feature.getString("webPublicationDate");
-                String webTitle = feature.getString("webTitle");
-                String webUrl = feature.getString("webUrl");
-                String pillarName = feature.getString("pillarName");
-                JSONObject fields = feature.getJSONObject("fields");
+                JSONObject news = results.getJSONObject(i);
+                String sectionId = news.getString("sectionId");
+                String sectionName = news.getString("sectionName");
+                String webPublicationDate = news.getString("webPublicationDate");
+                webPublicationDate = webPublicationDate.substring(0, 10) + " " +
+                        webPublicationDate.substring(11, 16);
+                String webTitle = news.getString("webTitle");
+                String webUrl = news.getString("webUrl");
+                String pillarName = news.getString("pillarName");
+                JSONObject fields = news.getJSONObject("fields");
                 String thumbnail = fields.getString("thumbnail");
-                Log.i("JSON", sectionId + ", " + sectionName + ", " + webPublicationDate + ", " + webTitle);
-                Log.i("JSON", thumbnail);
                 Bitmap bitmap = getBitmapFromURL(thumbnail, context, defaultImg);
-                data.add(new Data(sectionId, sectionName, webPublicationDate, webTitle, webUrl, pillarName, thumbnail, bitmap));
-                //data.add (new Data(place,mag,time,url));
+                String author = "";
+                //finding the author
+
+                JSONArray tags = news.getJSONArray("tags");
+                if (tags.length() > 0) {
+                    JSONObject authorOb = tags.getJSONObject(0);
+                    String firstName = authorOb.getString("firstName");
+                    String lastName = authorOb.getString("lastName");
+                    author = firstName + " " + lastName;
+                }
+
+                data.add(new Data(sectionId, sectionName, webPublicationDate, webTitle, webUrl, pillarName, thumbnail, bitmap, author));
             }
 
         } catch (JSONException e) {
@@ -77,7 +87,7 @@ public class QueryUtils {
     Bitmap bitmap = dataLoader.getBitmapFromUrl ( myUrl, context, R.drawable.ic_launcher_foreground );
     iv.setImageBitmap (bitmap);
      */
-    public static Bitmap getBitmapFromURL(String srcUrl, Context context, int defaultImg) {
+    private static Bitmap getBitmapFromURL(String srcUrl, Context context, int defaultImg) {
         Bitmap image;
         try {
             URL url = new URL(srcUrl);

@@ -15,7 +15,7 @@ import java.net.URL;
 public class HttpHandler {
     private static final String TAG = "myPP";
 
-    public HttpHandler() {
+    HttpHandler() {
     }
 
     public String makeServiceCall(String reqUrl) {

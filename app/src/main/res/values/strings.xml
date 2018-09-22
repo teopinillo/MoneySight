@@ -2,5 +2,14 @@
     <string name="app_name">Money Sight.</string>
     <string name="noInternetConnection">No Internet Connection.</string>
     <string name="newsThumbnail">News Thumbnail.</string>
+    <string name="noNews">No news today.</string>
+    <string name="settings_title">Filters</string>
+
+    <string name="edit_and_preference_key">edit_and_preference_key</string>
+    <string name="edit_or_preference_key">edit_or_preference_key</string>
+    <string name="edit_not_preference_key">edit_not_preference_key</string>
+    <string name="and_filter_default_value"></string>
+    <string name="or_filter_default_value"></string>
+    <string name="not_filter_default_value"></string>
 
 </resources>

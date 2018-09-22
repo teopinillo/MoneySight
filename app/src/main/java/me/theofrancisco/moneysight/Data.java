@@ -17,6 +17,7 @@ public class Data {
     private String pillarName; //"Sport"
     private String thumbnail; //"https://media.guim.co.uk/ecaa67933a4aa7ac3fdbdcf5c7cd31f0e343b408/0_36_3500_2100/500.jpg"
     private Bitmap bitmap;
+    private String author;
 
     Data() {
         id = "";
@@ -31,9 +32,11 @@ public class Data {
         pillarId = "";
         pillarName = "";
         bitmap = null;
+        author = "";
     }
 
-    public Data(String sectionId, String sectionName, String webPublicationDate, String webTitle, String webUrl, String pillarName, String thumbnail, Bitmap bitmap) {
+    Data(String sectionId, String sectionName, String webPublicationDate, String webTitle,
+         String webUrl, String pillarName, String thumbnail, Bitmap bitmap, String author) {
         this.sectionId = sectionId;
         this.sectionName = sectionName;
         this.webPublicationDate = webPublicationDate;
@@ -42,48 +45,27 @@ public class Data {
         this.pillarName = pillarName;
         this.thumbnail = thumbnail;
         this.bitmap = bitmap;
+        this.author = author;
     }
-
-    //https://content.guardianapis.com/search?q=money&api-key=55518aa4-ff5d-40a5-8ee0-0365060f27ef&show-fields=thumbnail
 
     public String getSectionId() {
         return sectionId;
-    }
-
-    public void setSectionId(String sectionId) {
-        this.sectionId = sectionId;
     }
 
     public String getSectionName() {
         return sectionName;
     }
 
-    public void setSectionName(String sectionName) {
-        this.sectionName = sectionName;
-    }
-
     public String getWebPublicationDate() {
         return webPublicationDate;
-    }
-
-    public void setWebPublicationDate(String webPublicationDate) {
-        this.webPublicationDate = webPublicationDate;
     }
 
     public String getWebTitle() {
         return webTitle;
     }
 
-    public void setWebTitle(String webTitle) {
-        this.webTitle = webTitle;
-    }
-
     public String getPillarName() {
         return pillarName;
-    }
-
-    public void setPillarName(String pillarName) {
-        this.pillarName = pillarName;
     }
 
     public String getUrl() {
@@ -92,6 +74,11 @@ public class Data {
 
     public Bitmap getBitmap() {
         return bitmap;
+    }
+
+    public String getAuthor() {
+        if (!author.equals("")) return "By: " + author;
+        return "";
     }
 
 

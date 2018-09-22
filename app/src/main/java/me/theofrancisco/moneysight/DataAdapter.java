@@ -3,6 +3,7 @@ package me.theofrancisco.moneysight;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,6 @@ import java.util.List;
 public class DataAdapter extends ArrayAdapter<Data> {
     private int color;
     private Context context;
-    private String mag;
 
     DataAdapter(Context context, List<Data> datas, int color) {
         super(context, 0, datas);
@@ -25,14 +25,12 @@ public class DataAdapter extends ArrayAdapter<Data> {
     }
 
     @Override
-
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(@NonNull int position, @NonNull View convertView, @NonNull ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
         View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.list_item, parent, false);
-        }
+        listItemView = LayoutInflater.from(getContext()).inflate(
+                R.layout.list_item, parent, false);
+
 
         listItemView.setBackgroundColor(color);
         // Get the {@link AndroidFlavor} object located at this position in the list
@@ -48,6 +46,9 @@ public class DataAdapter extends ArrayAdapter<Data> {
 
         ImageView ivThumbnail = listItemView.findViewById(R.id.ivThumbnail);
         ivThumbnail.setImageBitmap(data.getBitmap());
+
+        TextView tvAuthor = listItemView.findViewById(R.id.tvAuthor);
+        tvAuthor.setText(data.getAuthor());
 
         listItemView.setOnClickListener(new View.OnClickListener() {
             @Override
